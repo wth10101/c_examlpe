@@ -1,22 +1,43 @@
 #include <stdio.h>
-int main() {
-  int n, reversed = 0, remainder, original;
-    printf("Enter an integer: ");
-    scanf("%d", &n);
-    original = n;
+#include <string.h>
+#include <stdlib.h>
 
-    // reversed integer is stored in reversed variable
-    while (n != 0) {
-        remainder = n % 10;
-        reversed = reversed * 10 + remainder;
-        n /= 10;
+char *strrev(char *str) {
+    int len = strlen(str);
+  
+  	// Temporary char array to store the
+    // reversed string
+    char *rev = (char *)malloc
+      (sizeof(char) * (len + 1));
+  
+    // Reversing the string
+    for (int i = 0; i < len; i++) {
+        rev[i] = str[len - i - 1];
     }
+    rev[len] = '\0';
+    return rev;
+}
 
-    // palindrome if orignal and reversed are equal
-    if (original == reversed)
-        printf("%d is a palindrome.", original);
+void isPalindrome(char *str) {
+
+    // Reversing the string
+    char *rev = strrev(str);
+
+    // Check if the original and reversed
+  	// strings are equal
+    if (strcmp(str, rev) == 0)
+        printf("\"%s\" is palindrome.\n",
+               str);
     else
-        printf("%d is not a palindrome.", original);
+        printf("\"%s\" is not palindrome.\n",
+               str);
+}
+
+int main() {
+    
+  	// Cheking for palindrome strings
+	isPalindrome("madam");
+  	isPalindrome("hello");
 
     return 0;
 }
